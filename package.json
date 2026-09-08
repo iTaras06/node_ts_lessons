@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "server": "npx tsx watch ./src/server.ts",
     "start": "npx tsx ./src/index.ts",
     "build": "tsc"
   },
