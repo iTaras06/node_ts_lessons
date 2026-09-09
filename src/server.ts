@@ -5,6 +5,27 @@ const PORT:number = 4200
 
 const server = http.createServer((req,res)=>{
     const PATH_TO_PAGES = path.join("src", "pages")
+    console.log(req.url, path.extname(req.url as string))
+
+    if(req.method==="GET" && path.extname(req.url as string)==='.css')
+    {
+        const PATH_TO_CSS = path.join("src","styles",req.url as string)
+        const content = fs.readFileSync(PATH_TO_CSS)
+        res.setHeader("Content-Type", "text/css; charset=utf-8")
+
+        res.write(content)
+    }
+
+    if (req.method==="GET" && [".jpg",".JPG",".jpeg",".JPEG",".png",".PNG", ".webp",".WEBP"].includes( 
+        path.extname(req.url as string))) { 
+        const PATH_TO_IMAGE = path.join("src","images", 
+            path.basename(req.url as string)) 
+        const content = fs.readFileSync(PATH_TO_IMAGE) 
+        res.setHeader("Content-Type", "image/jpeg") 
+        res.write(content) 
+    }
+
+
     if(req.method==="GET" && req.url==='/')
     {
         const PATH_TO_INDEX_PAGE = path.join(PATH_TO_PAGES, "index.html")
@@ -23,22 +44,22 @@ const server = http.createServer((req,res)=>{
         res.write(content)
     }
 
-
-
-
     else if(req.method === "POST"){
         res.setHeader("Content-Type", "application/json; charset=utf-8")
         const user = {
-            name:"Alex", age:20
+            name:"Alex", 
+            age:20
         }
         res.write(JSON.stringify(user))
     }
+
      else if(req.method === "PUT"){
         res.write(`Ти хочеш оновити дані. Request: ${req.method}`)
     }
    
     res.end()
 })
+
 server.listen(PORT,()=>{
     console.log(`Server http://localhost:${PORT} has been started...`)
 })

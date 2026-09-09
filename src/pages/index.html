@@ -1,130 +1,321 @@
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Моя страница</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    <title>MobileX — магазин смартфонов</title>
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-        }
-
-        header {
-            background-color: #222;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        nav {
-            background-color: #333;
-            padding: 15px;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        main {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-
-        .content {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-        }
-
-        h1 {
-            margin-bottom: 15px;
-        }
-
-        h2 {
-            margin-bottom: 10px;
-        }
-
-        p {
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        button {
-            background-color: #222;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #555;
-        }
-
-        footer {
-            background-color: #222;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header>
-        <h1>Моя HTML-страница</h1>
-        <p>Простая страница без изображений</p>
-    </header>
+<header class="header">
+    <div class="container header__inner">
 
-    <nav>
-        <a href="#">Главная</a>
-        <a href="about">О нас</a>
-        <a href="#">Контакты</a>
-    </nav>
+        <a href="/" class="logo">
+            Mobile<span>X</span>
+        </a>
 
-    <main>
-        <section class="content">
-            <h2>Добро пожаловать!</h2>
+        <nav class="nav">
+            <a href="/" class="nav__link nav__link--active">Главная</a>
+            <a href="/about" class="nav__link">О магазине</a>
+            <a href="#catalog" class="nav__link">Каталог</a>
+            <a href="#contacts" class="nav__link">Контакты</a>
+        </nav>
+
+        <button class="cart">
+            🛒 Корзина
+        </button>
+
+    </div>
+</header>
+
+
+<main>
+
+
+    <section class="hero">
+        <div class="container hero__content">
+
+            <div class="hero__text">
+                <p class="hero__subtitle">НОВАЯ КОЛЛЕКЦИЯ 2026</p>
+
+                <h1>
+                    Технологии,
+                    <span>которые рядом</span>
+                </h1>
+
+                <p class="hero__description">
+                    Современные смартфоны для работы, учёбы,
+                    творчества и развлечений.
+                </p>
+
+                <a href="#catalog" class="button">
+                    Смотреть каталог
+                </a>
+            </div>
+
+            <div class="hero__info">
+                <div class="hero__number">6</div>
+                <p>актуальных моделей</p>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <section class="catalog" id="catalog">
+        <div class="container">
+
+            <div class="section-heading">
+                <div>
+                    <p class="section-label">НАШ КАТАЛОГ</p>
+                    <h2>Популярные смартфоны</h2>
+                </div>
+
+                <p class="section-description">
+                    Выбирайте устройство под свои задачи
+                </p>
+            </div>
+
+
+            <div class="products">
+
+
+                
+                <article class="product-card">
+
+                    <div class="product-card__image">
+                        <img src="/images/iphone-15.png" alt="Apple iPhone 15">
+                    </div>
+
+                    <div class="product-card__content">
+                        <p class="product-card__brand">APPLE</p>
+
+                        <h3>iPhone 15</h3>
+
+                        <p class="product-card__specs">
+                            6.1″ OLED · 128 GB · A16 Bionic
+                        </p>
+
+                        <div class="product-card__bottom">
+                            <strong>34 999 ₴</strong>
+                            <button class="buy-button">Купить</button>
+                        </div>
+                    </div>
+
+                </article>
+
+
+
+                <article class="product-card">
+
+                    <div class="product-card__image">
+                        <img src="/images/iphone-16.PNG" alt="Apple iPhone 16">
+                    </div>
+
+                    <div class="product-card__content">
+                        <p class="product-card__brand">APPLE</p>
+
+                        <h3>iPhone 16</h3>
+
+                        <p class="product-card__specs">
+                            6.1″ OLED · 128 GB · A18
+                        </p>
+
+                        <div class="product-card__bottom">
+                            <strong>42 999 ₴</strong>
+                            <button class="buy-button">Купить</button>
+                        </div>
+                    </div>
+
+                </article>
+
+
+
+                <article class="product-card">
+
+                    <div class="product-card__image">
+                        <img src="/images/samsung-s24.WEBP" alt="Samsung Galaxy S24">
+                    </div>
+
+                    <div class="product-card__content">
+                        <p class="product-card__brand">SAMSUNG</p>
+
+                        <h3>Galaxy S24</h3>
+
+                        <p class="product-card__specs">
+                            6.2″ AMOLED · 256 GB · 8 GB RAM
+                        </p>
+
+                        <div class="product-card__bottom">
+                            <strong>31 999 ₴</strong>
+                            <button class="buy-button">Купить</button>
+                        </div>
+                    </div>
+
+                </article>
+
+
+
+                <article class="product-card">
+
+                    <div class="product-card__image">
+                        <img src="/images/pixel-9.PNG" alt="Google Pixel 9">
+                    </div>
+
+                    <div class="product-card__content">
+                        <p class="product-card__brand">GOOGLE</p>
+
+                        <h3>Pixel 9</h3>
+
+                        <p class="product-card__specs">
+                            6.3″ OLED · 128 GB · Tensor G4
+                        </p>
+
+                        <div class="product-card__bottom">
+                            <strong>29 999 ₴</strong>
+                            <button class="buy-button">Купить</button>
+                        </div>
+                    </div>
+
+                </article>
+
+
+
+                <article class="product-card">
+
+                    <div class="product-card__image">
+                        <img src="/images/iphone-17.png" alt="Apple iPhone 17">
+                    </div>
+
+                    <div class="product-card__content">
+                        <p class="product-card__brand">APPLE</p>
+
+                        <h3>iPhone 17 Pro Max</h3>
+
+                        <p class="product-card__specs">
+                            6.9″ OLED · 512 GB · 12 GB RAM
+                        </p>
+
+                        <div class="product-card__bottom">
+                            <strong>67 189 ₴</strong>
+                            <button class="buy-button">Купить</button>
+                        </div>
+                    </div>
+
+                </article>
+
+
+
+                <article class="product-card">
+
+                    <div class="product-card__image">
+                        <img src="/images/pixel-11.webp" alt="Pixel 11">
+                    </div>
+
+                    <div class="product-card__content">
+                        <p class="product-card__brand">GOOGLE</p>
+
+                        <h3>Pixel 11 Pro XL</h3>
+
+                        <p class="product-card__specs">
+                            6.8″ LTPOLED · 256 GB · 12 GB RAM
+                        </p>
+
+                        <div class="product-card__bottom">
+                            <strong>66 999 ₴</strong>
+                            <button class="buy-button">Купить</button>
+                        </div>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ADVANTAGES -->
+
+    <section class="advantages">
+        <div class="container">
+
+            <p class="section-label">ПОЧЕМУ MOBILEX</p>
+
+            <div class="advantages__grid">
+
+                <div class="advantage">
+                    <span>01</span>
+                    <h3>Оригинальная техника</h3>
+                    <p>
+                        Только новые устройства от официальных
+                        производителей.
+                    </p>
+                </div>
+
+                <div class="advantage">
+                    <span>02</span>
+                    <h3>Гарантия</h3>
+                    <p>
+                        Предоставляем гарантию на каждый смартфон.
+                    </p>
+                </div>
+
+                <div class="advantage">
+                    <span>03</span>
+                    <h3>Быстрая доставка</h3>
+                    <p>
+                        Отправляем заказы по Украине каждый день.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+
+<footer class="footer" id="contacts">
+
+    <div class="container footer__inner">
+
+        <div>
+            <a href="/" class="logo">
+                Mobile<span>X</span>
+            </a>
 
             <p>
-                Это простая HTML-страница, созданная с использованием
-                HTML и CSS.
+                Современные смартфоны<br>
+                для современного ритма жизни.
             </p>
+        </div>
 
-            <p>
-                Здесь нет изображений — только текст, навигация,
-                кнопка и базовое оформление.
-            </p>
+        <div>
+            <p class="footer__title">КОНТАКТЫ</p>
+            <p>+380 67 123 45 67</p>
+            <p>hello@mobilex.ua</p>
+        </div>
 
-            <button>Подробнее</button>
-        </section>
-    </main>
+        <div>
+            <p class="footer__title">АДРЕС</p>
+            <p>Одесса, Украина</p>
+            <p>Пн–Сб · 09:00–19:00</p>
+        </div>
 
-    <footer>
-        <p>© 2026 Моя страница</p>
-    </footer>
+    </div>
+
+    <div class="container footer__bottom">
+        © 2026 MobileX. Все права защищены.
+    </div>
+
+</footer>
 
 </body>
 </html>
-```
