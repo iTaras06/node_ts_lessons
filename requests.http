@@ -1,0 +1,26 @@
+GET http://localhost:4200/books
+
+###
+
+GET http://localhost:4200/about
+
+
+###
+
+# POST http://localhost:4200
+# Content-Type: application/json;
+
+# {
+#     "name":"Taras",
+#     "age":20
+# }
+
+
+POST http://localhost:4200/books
+Content-Type: application/json;
+
+{
+    "title":"test book",
+    "price":2000,
+    "is_active":true
+}

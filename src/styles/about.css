@@ -82,6 +82,11 @@ button {
     cursor: pointer;
 }
 
+.books-link {
+    color: #8cff00;
+    font-weight: 900;
+}
+
 
 /* HERO */
 

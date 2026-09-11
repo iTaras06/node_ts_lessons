@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Додати книгу</title>
+
+    <link rel="stylesheet" href="/book.css">
+</head>
+
+<body>
+
+<div class="container">
+<div class="add-book-page">
+
+    <h1>Додати книгу</h1>
+
+    <form id="book-form">
+
+        <label>
+            Назва книги
+            <input
+                type="text"
+                name="title"
+                required
+            >
+        </label>
+
+        <label>
+            Ціна
+            <input
+                type="number"
+                name="price"
+                min="0"
+                required
+            >
+        </label>
+
+        <label>
+            <input
+                type="checkbox"
+                name="is_active"
+                checked
+            >
+            Книга в наявності
+        </label>
+
+        <button type="submit">
+            Додати книгу
+        </button>
+
+    </form>
+
+    <a href="/books" class="back-to-books">
+        Повернутися до книг
+    </a>
+
+</div>
+</div>
+
+<script>
+    const form = document.getElementById("book-form");
+
+    form.addEventListener("submit", async (event) => {
+
+        event.preventDefault();
+
+        const book = {
+            title: form.title.value,
+            price: Number(form.price.value),
+            is_active: form.is_active.checked
+        };
+
+        const response = await fetch("/books", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(book)
+        });
+
+        if (response.ok) {
+            window.location.href = "/books";
+        }
+    });
+</script>
+
+</body>
+</html>
