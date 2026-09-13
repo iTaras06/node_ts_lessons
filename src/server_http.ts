@@ -2,8 +2,8 @@ import http from "node:http"
 import fs from "node:fs"
 import path from "node:path"
 import { URL } from "node:url"
-import { books } from "./data/books.js"
 import 'dotenv/config'
+import { books } from "./data/books.js"
 import { showAllBooks, showBook } from "./utils/showBooks.js"
 import { BookType } from "./types/BookType.js"
 const PORT:number = 4200
@@ -151,5 +151,5 @@ const server = http.createServer((req,res)=>{
 // })
 
 server.listen(process.env.PORT,()=>{
-    console.log(`Chinazes ${process.env.HOST}:${process.env.PORT} has been started...`)
+    console.log(`Server ${process.env.SERVER_NAME} has been started...`)
 })
