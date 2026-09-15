@@ -1,26 +1,43 @@
 GET http://localhost:4200/books
-
+ 
 ###
-
-GET http://localhost:4200/about
-
-
+ 
+GET  http://localhost:4200/books/11
+ 
 ###
-
-# POST http://localhost:4200
-# Content-Type: application/json;
-
-# {
-#     "name":"Taras",
-#     "age":20
-# }
-
-
+ 
+GET http://localhost:4200/books?title=test
+ 
+ 
+###
 POST http://localhost:4200/books
-Content-Type: application/json;
+Content-Type: application/json
+ 
+{
+    "title": "Чистий код",
+    "price": 1000,
+    "is_active": true
+}
+
+
+###
+GET http://localhost:4200/authors
+
+###
+
+GET http://localhost:4200/authors/1
+
+###
+PUT http://localhost:4200/books/12
+Content-Type: application/json
 
 {
-    "title":"test book",
-    "price":2000,
-    "is_active":true
+  "title": "Нова книжка",
+  "price": 300,
+  "is_active": true,
+  "authors_id": [1, 2]
 }
+
+###
+
+DELETE  http://localhost:4200/books/12

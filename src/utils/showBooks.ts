@@ -1,7 +1,10 @@
 import { BookType } from "../types/BookType.js";
  
 type showBookType = (book:BookType)=>string;
+
 type showBooksType = (book:Array<BookType>)=>string;
+
+type getBooksByTitleType = (title:string, books:BookType[])=>BookType[]|null;
  
 const showBook:showBookType = (book)=>{
     return `<div class="book-card">
@@ -15,17 +18,9 @@ const showBook:showBookType = (book)=>{
 </div>`
 }
  
+
 const showAllBooks:showBooksType = (books)=>{
-    let books_content:string = ""
-
-
-
-
-
-
-
-
-
+    let books_content:string = "";
     books.forEach((book,index)=>{
     if(index==0)
         books_content+=`<html><head><link rel="stylesheet" href="book.css"></head>
@@ -35,5 +30,21 @@ const showAllBooks:showBooksType = (books)=>{
     books_content+=`</div></body></html>`
     return books_content
 }
+
+
+const getBooksByTitle:getBooksByTitleType = (title, books)=>{
+    const books_filtred = books.filter(book=>title.toLowerCase().trim()===book.title.toLowerCase().trim())
+    if(books_filtred.length>0)
+    {
+        return books_filtred
+    }
+    return null
+}
+
+
+function compareBook(b1:BookType, b2:BookType):number{
+    return b2.id-b1.id
+}
+
  
-export {showAllBooks, showBook}
+export {showAllBooks, showBook, getBooksByTitle, compareBook}

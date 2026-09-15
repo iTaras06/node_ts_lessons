@@ -4,5 +4,8 @@ type BookType = {
     price:number,
     is_active?:boolean
     image?:string
+    authors_id:number[]
 }
-export{BookType}
+
+type BookCreateType = Omit<BookType, "id">;
+export{BookType, BookCreateType}
