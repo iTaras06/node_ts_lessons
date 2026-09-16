@@ -194,9 +194,8 @@ bookRouter.put("/:id",
       response.error = "Missing title, price or is_active";
     } else {
       
-      books.splice(bookIndex, 1); // видаляємо стару книгу
+      books.splice(bookIndex, 1);
 
-      // створюємо нову книгу з новим id
       const newId: number = books.length > 0 ? books.sort(compareBook)[0].id + 1 : 1;
       const newBook: BookType = {
         id: newId,
