@@ -2,11 +2,12 @@ GET http://localhost:4200/books
  
 ###
  
-GET  http://localhost:4200/books/11
+GET  http://localhost:4200/books/3
  
 ###
  
-GET http://localhost:4200/books?title=test
+GET http://localhost:4200/books?title=Гаррі Поттер
+ 
  
  
 ###
@@ -40,4 +41,4 @@ Content-Type: application/json
 
 ###
 
-DELETE  http://localhost:4200/books/12
+DELETE  http://localhost:4200/books/1

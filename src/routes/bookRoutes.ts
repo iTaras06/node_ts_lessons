@@ -11,17 +11,8 @@ const bookRouter = Router();
 // ?title=book_name
 //http://localhost:4200/books 
 
-bookRouter.get("/", 
+// bookRouter.get("/", 
   // (req:Request<{},BookResponseType,null,{title:string}>,res:Response,)=>{    
-    
-async(req: Request<{}, BookResponseType, null, { title: string }>, res: Response) => {
-
-  const result = await pool.query("SELECT * FROM books");
-  res.json(result.rows);
-
-
-
-
     // const exist_book:boolean = books.length>0
     // const title = req.query.title as string | undefined
     // let our_books:BookType[]|null = null;
@@ -44,29 +35,28 @@ async(req: Request<{}, BookResponseType, null, { title: string }>, res: Response
     //     "Content-Type":"application/json"
     // })
     // res.end(JSON.stringify(response))
-
-
-
-
-});
+// });
  
+
 
 //отримання книжки за id
-bookRouter.get("/:id", 
-    (req:Request<{id:number}>,res:Response)=>{
+// bookRouter.get("/:id", 
+//     (req:Request<{id:number}>,res:Response)=>{
     
-    const id:number = +req.params.id
-    const book:BookType|undefined = books.find((book)=>book.id===id);
-    const exist_book:boolean = (book!==undefined)
-    const response:BookResponseType = {
-        data:exist_book?book as BookType:null,
-        error:exist_book?null:"The book not found",
-        status:exist_book?200:204
-    };
+//     const id:number = +req.params.id
+//     const book:BookType|undefined = books.find((book)=>book.id===id);
+//     const exist_book:boolean = (book!==undefined)
+//     const response:BookResponseType = {
+//         data:exist_book?book as BookType:null,
+//         error:exist_book?null:"The book not found",
+//         status:exist_book?200:204
+//     };
 
-    res.status(response.status).json(response)
-});
+//     res.status(response.status).json(response)
+// });
  
+
+
 
 //створення книжки
 bookRouter.post("/", 
@@ -108,7 +98,7 @@ bookRouter.post("/",
 
 
 
-bookRouter.post("/", (req: Request<{}, BookResponseType, BookCreateType>, res:Response) => {
+bookRouter.post("/",(req:Request<{},BookResponseType, BookCreateType>,res:Response) => {
   const body = req.body;
   const response: BookResponseType = {
     data: null,
@@ -203,8 +193,8 @@ bookRouter.put("/:id",
       response.status = 400;
       response.error = "Missing title, price or is_active";
     } else {
-      // видаляємо стару книгу
-      books.splice(bookIndex, 1);
+      
+      books.splice(bookIndex, 1); // видаляємо стару книгу
 
       // створюємо нову книгу з новим id
       const newId: number = books.length > 0 ? books.sort(compareBook)[0].id + 1 : 1;
@@ -224,29 +214,74 @@ bookRouter.put("/:id",
 
     res.status(response.status).json(response);
 
-    // const book: BookType | undefined = books.find((book) => book.id === id);
-    // if (book === undefined) {
-    //     response.status = 204;
-    //     response.error = "The book not found";
-    // } else if (
-    //     body === undefined ||
-    //     body.title === undefined ||
-    //     body.price === undefined ||
-    //     body.is_active === undefined
-    // ) {
-    //     response.status = 400;
-    //     response.error = "Missing title, price or is_active";
-    // } else {
-    //     book.title = body.title;
-    //     book.price = body.price;
-    //     book.is_active = body.is_active;
-    //     book.authors_id = body.authors_id ?? [];
-
-    //     response.data = book;
-    //     response.error = null;
-    //     response.status = 200;
-    // }
-    // res.status(response.status).json(response);
   });
+
+
+
+// DATABASE
+
+// роут, який повертає всі книги з БД та книжки за полем title з БД
+bookRouter.get("/",
+  async(req:Request<{},BookResponseType,null,{title:string}>, res:Response)=>{
+    try {
+      const title = req.query.title as string | undefined;
+      const result = title !== undefined
+        ? await pool.query(
+            "SELECT * FROM books WHERE LOWER(title) LIKE LOWER($1)",
+            [`%${title}%`]
+          )
+        : await pool.query("SELECT * FROM books");
+
+      const our_books = result.rows;
+      const exist_books: boolean = our_books.length > 0;
+
+      const response: BookResponseType = {
+        data: exist_books ? our_books : null,
+        error: exist_books ? null : "Books list is empty",
+        status: exist_books ? 200 : 404,
+      };
+
+      res.status(response.status).json(response);
+    } catch (err) {
+      console.error(err);
+      const response: BookResponseType = {
+        data: null,
+        error: "Database error",
+        status: 500,
+      };
+      res.status(response.status).json(response);
+    }
+  });
+
+
+// роут, який повертає книгу за id з БД
+bookRouter.get("/:id",
+  async(req:Request<{id:number}>,res:Response)=>{
+    try {
+      const id: number = +req.params.id;
+      const result = await pool.query("SELECT * FROM books WHERE id = $1", [id]);
+      const book = result.rows[0];
+
+      const exist_book: boolean = book !== undefined;
+
+      const response: BookResponseType = {
+        data: exist_book ? book : null,
+        error: exist_book ? null : "The book not found",
+        status: exist_book ? 200 : 404,
+      };
+
+      res.status(response.status).json(response);
+    } catch (err) {
+      console.error(err);
+      const response: BookResponseType = {
+        data: null,
+        error: "Database error",
+        status: 500,
+      };
+      res.status(response.status).json(response);
+    }
+  });
+
+
 
 export default bookRouter
