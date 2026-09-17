@@ -3,7 +3,7 @@ import fs from "node:fs"
 import path from "node:path"
 import { URL } from "node:url"
 import 'dotenv/config'
-import { books } from "./data/booksаааа.js"
+import { books } from "./data/books.js"
 import { showAllBooks, showBook } from "./utils/showBooks.js"
 import { BookType } from "./types/BookType.js"
 const PORT:number = 4200

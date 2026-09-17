@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <link rel="stylesheet" href="styles/book.css"/>
+</head>
+<body>
+
+<h1>Каталог книг</h1>
+
+<div class="books-grid">
+    <% books.forEach(book => { %>
+        <div class="book-card">
+            <div class="book-card__image">
+                <img src="/images/<%= book.image %>" alt="<%= book.title %>"/>
+            </div>
+            <div class="book-card__body">
+                <h2 class="book-card__title"><%= book.title %></h2>
+                <p class="book-card__price"><%= book.price %> грн</p>
+                <span class="book-card__status <%= book.is_active ? 'active' : 'inactive' %>">
+                    <%= book.is_active ? "В наявності" : "Немає в наявності" %>
+                </span>
+            </div>
+        </div>
+    <% }) %>
+</div>
+
+</body>
+</html>
